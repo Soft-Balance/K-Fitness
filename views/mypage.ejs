@@ -1,0 +1,82 @@
+<%-include('header.ejs')%>
+
+
+<br><br><br>
+<h1>마이페이지</h1>
+
+<div id="member_detail" style="width: 500px; margin:0 auto; text-align: left;">
+    <div class="n-section-title first info_views-area">
+        <h1 class="tit">기본 회원정보</h1>
+    </div>
+
+    <table class="n-table table-row my-info-modify">
+        <colgroup>
+            <col style="width:250px">
+            <col style="width:50%">
+        </colgroup>
+        <tbody>
+        <tr>
+            <th scope="row">아이디</th>
+            <td>
+                <strong><%=user_id%></strong>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">이름</th>
+            <td>
+                <strong><%=name%></strong>                                
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">남은 일수</th>
+            <td>
+                <% if (last_day < 0) { %>
+                    <strong>기한 만료</strong>     
+                <% }else{ %>                           
+                <strong><%=last_day%>일</strong>    
+                <% } %>                                                       
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">사물함 비밀번호</th>
+            <td>
+                <% if (locker_pw !== undefined && locker_pw !== '-1') { %>
+                    <strong><%=locker_pw%>&nbsp;<button onclick="lockdel()">삭제</button>&nbsp;<button onclick="openPopup()">변경</button></strong>
+                <% }else{ %>
+                    <strong><button onclick="openPopup()">사물함을 등록하세요.</button></strong>
+                <% } %>                           
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<script>
+    function openPopup() {
+      // 팝업 창 열기
+      window.open('locker', 'Popup', 'width=400,height=300');
+    }
+  
+    function lockdel() {
+      // 비밀번호 삭제 요청 보내기
+      fetch('/lockdel', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert('비밀번호가 삭제 되었습니다');
+        window.location.reload(); // 페이지 새로고침
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+
+
+<%-include('footer.ejs')%>

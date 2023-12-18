@@ -1,0 +1,33 @@
+<%-include('contact-header.ejs')%>
+
+<!-- <script>
+    function writing() {
+    window.location.href = "/contactList"
+}
+</script> -->
+
+
+<h1>문의</h1>
+<form action="/contactProc" method="post" class="contact-login">
+    <!-- <div style="text-align: left; margin-left: 30vw;">
+        <button onclick="writing()"><뒤로가기</button>
+    </div> -->
+    <ul>
+        <label for="username"></label>
+        <input type="text" id="username" name="name" placeholder="이름" autocomplete="off" required />
+  
+        <label for="password"></label>
+        <input type="text" id="password" name="phone" placeholder="연락처" autocomplete="off" required />
+  
+        <label for="password"></label>
+        <input type="text" id="password" name="email" placeholder="이메일" autocomplete="off" required />
+
+        <label for="password"></label>
+        <input type="text" id="password" name="memo" placeholder="내용" autocomplete="off" required class="memo" />
+
+        <input type="submit" name="submit" value="문의" />
+    </ul>
+</form>
+
+
+<%-include('footer.ejs')%>

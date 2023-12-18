@@ -1,0 +1,173 @@
+<%-include('header.ejs')%>
+
+<br><br><br>
+<h1>등록 및 결제</h1>
+
+<div id="member_detail" style="width: 500px; margin:0 auto; text-align: left;">
+    <div class="n-section-title first info_views-area">
+        <h1 class="tit">등록 및 결제</h1>
+    </div>
+    <form action="paymentProc" onsubmit="return submitForm();" method="post">
+        <table class="n-table table-row my-info-modify" style="width: 500px;">
+
+            <tbody>
+            <tr>
+                <th scope="row">개월 수 선택</th>
+                <td>
+                    <select id="monthSelect" name="monthSelect" onchange="calculateTotal()">
+                        <option value="1">1개월</option>
+                        <option value="2">2개월</option>
+                        <option value="3">3개월</option>
+                        <option value="4">4개월</option>
+                        <option value="5">5개월</option>
+                        <option value="6">6개월</option>
+                        <option value="7">7개월</option>
+                        <option value="8">8개월</option>
+                        <option value="9">9개월</option>
+                        <option value="10">10개월</option>
+                        <option value="11">11개월</option>
+                        <option value="12">12개월</option>
+                    </select>
+                    &nbsp;&nbsp;1개월 당 1만원/3개월 마다 1천원 할인
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">할인 코드</th>
+                <td>
+                    <label>
+                        <input type="text" name="discountcode" placeholder="할인 코드">
+                        <button type="button" onclick="discountcheck()">적용</button>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">결제 금액</th>
+                <td>
+                    <label>
+                        <input type="text" name="total_fee" readonly>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">결제 방법</th>
+                <td>
+                    <label>
+                        <input type="radio" name="pay" value="money" onclick="showPaymentMethod()"> 현금
+                    </label>
+                
+                    <label>
+                        <input type="radio" name="pay" value="card" onclick="showPaymentMethod()"> 카드
+                    </label>
+                
+                    <label>
+                        <input type="radio" name="pay" value="ticket" onclick="showPaymentMethod()"> 금액권
+                    </label>
+                    
+                    <!-- 추가 정보 -->
+                    <div id="paymentDetailsContainer" style="display: none;">
+                        <label id="cardNumberInput" style="display: none;">
+                            카드 번호: <input type="text" name="cardNumber">
+                        </label>
+                    
+                        <label id="ticketNumberInput" style="display: none;">
+                            금액권 번호: <input type="text" name="ticketNumber">
+                        </label>
+            
+                        <label id="accountNumberContainer" style="display: none;">
+                            계좌 번호: <input type="text" name="accountNumber">
+                        </label>
+                    </div>
+                    <!-- 추가 정보 끝 -->
+                    <button type="submit">결제하기</button>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<script>
+    function discountcheck() {
+        // 입력된 할인 코드 가져오기
+        var discountCodeInput = document.querySelector('input[name="discountcode"]');
+        var discountCodeValue = discountCodeInput.value;
+
+        // "x-mas"와 일치하는지 확인
+        if (discountCodeValue === 'x-mas') {
+            alert('할인 코드가 적용되었습니다!');
+            discountCodeInput.readOnly = true;
+        } else {
+            alert('할인 코드가 일치하지 않습니다. 다시 시도해주세요.');
+        }
+        calculateTotal();
+    }
+
+    function calculateTotal() {
+        // 개월 수 가져오기
+        var monthSelect = document.getElementById('monthSelect');
+        var selectedMonths = parseInt(monthSelect.value, 10);
+
+        // 할인 코드 확인
+        var discountCodeInput = document.querySelector('input[name="discountcode"]');
+        var discountCodeValue = discountCodeInput.value;
+        var discountAmount = (discountCodeValue === 'x-mas') ? 0.8 : 1;
+        var discountmonth = (Math.floor(selectedMonths / 3)) * 1000;
+
+        // 결제 금액 계산
+        var paymentAmount = (selectedMonths * 10000 - discountmonth) * discountAmount;
+
+        // 결제 금액 필드에 채우기
+        var totalFeeInput = document.querySelector('input[name="total_fee"]');
+        totalFeeInput.value = paymentAmount;
+    }
+
+    function showPaymentMethod() {
+        var paymentMethod = document.querySelector('input[name="pay"]:checked').value;
+        var cardNumberInput = document.getElementById('cardNumberInput');
+        var ticketNumberInput = document.getElementById('ticketNumberInput');
+        var accountNumberContainer = document.getElementById('accountNumberContainer');
+        var paymentDetailsContainer = document.getElementById('paymentDetailsContainer');
+
+        // Remove 'required' attribute from all payment-related input fields
+        cardNumberInput.removeAttribute('required');
+        ticketNumberInput.removeAttribute('required');
+        accountNumberContainer.removeAttribute('required');
+
+        // 숨김 처리
+        paymentDetailsContainer.style.display = 'none';
+        cardNumberInput.style.display = 'none';
+        ticketNumberInput.style.display = 'none';
+        accountNumberContainer.style.display = 'none';
+
+        // 결제 방법에 따라 보여줄 내용 설정
+        if (paymentMethod === 'money') {
+            // 현금 선택 시 계좌번호 표시
+            var accountNumber = '123-456-789';
+            accountNumberContainer.innerHTML = '계좌번호: ' + accountNumber;
+            paymentDetailsContainer.style.display = 'block';
+            accountNumberContainer.style.display = 'block';
+        } else if (paymentMethod === 'card') {
+            // 카드 선택 시 카드 번호 입력 필드 보여주기
+            cardNumberInput.style.display = 'block';
+            cardNumberInput.setAttribute('required', 'true'); // 필수 입력 필드로 설정
+            paymentDetailsContainer.style.display = 'block';
+        } else if (paymentMethod === 'ticket') {
+            // 금액권 선택 시 금액권 번호 입력 필드 보여주기
+            ticketNumberInput.style.display = 'block';
+            ticketNumberInput.setAttribute('required', 'true'); // 필수 입력 필드로 설정
+            paymentDetailsContainer.style.display = 'block';
+        }
+    }
+
+    function submitForm() {
+        // Call the showPaymentMethod function to update the form based on the selected payment method
+        showPaymentMethod();
+
+        // Add your additional form submission logic here if needed
+
+        // Return true to allow form submission
+        return true;
+    }
+</script>
+<%-include('footer.ejs')%>

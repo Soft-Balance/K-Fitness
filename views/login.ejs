@@ -1,0 +1,29 @@
+<%-include('header.ejs')%>
+
+<!-- <div style="text-align: center;">
+    <form action="/loginProc" method="post">
+        <ul style="display: inline-block; text-align: left;">
+            <li>로그인</li>
+            <li>아이디 : <input type="text" name="user_id" required></li>
+            <li>비밀번호 : <input type="password" name="pw" required></li>
+
+            <button>로그인</button>
+        </ul>
+    </form>
+</div> -->
+
+<h1 style="margin: 2%;">로그인</h1>
+
+    <form action="/loginProc" method="post" action="" class="login">
+      
+        <label for="username">Id</label>
+        <input type="text" id="username" name="user_id" placeholder="" autocomplete="off" required />
+      
+        <label for="password">Password</label>
+        <input type="password" id="password" name="pw" placeholder="" autocomplete="off" required />
+      
+        <input type="submit" name="submit" value="Log In" />
+      
+    </form>
+
+<%-include('footer.ejs')%>

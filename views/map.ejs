@@ -1,0 +1,100 @@
+<%-include('header.ejs')%>
+
+<link rel="stylesheet" href="/styles.css">
+
+<div style="text-align: center;">
+    <div class="flex-container">
+        <div class="spinner"><p>
+          <div class="cube1"></div>
+          <div class="cube2"></div>
+          Loading...
+          </p>
+        </div>
+        <div class="flex-slide home">
+          <div class="flex-title flex-title-home">SMITH MACHINE</div>
+          <div class="flex-about flex-about-home"><p></p></div>
+        </div>
+        <div class="flex-slide about">
+          <div class="flex-title">BENCH PRESS</div>
+          <div class="flex-about">
+            <div class="health-container">
+              <div class="health-card">
+                  <div class="health-face health-face1">
+                      <div class="health-content">
+                        <video width="100%" height="100%" controls class="flex-about-video">
+                        <!-- controls 속성을 사용하여 동영상 플레이어 컨트롤을 표시합니다. -->
+                        <source src="img/banchpress.mp4" type="video/mp4">
+                        <!-- 동영상 파일의 경로와 유형을 지정합니다. -->
+                        Your browser does not support the video tag.
+                        <!-- 브라우저가 video 요소를 지원하지 않을 때 표시할 메시지입니다. -->
+                        </video>
+                      </div>
+                  </div>
+                  <div class="health-face health-face2">
+                      <div class="health-content">
+                          <p>바벨이 명치에 오는 위치에서 등을 후인하강한 후 상부를 벤치에 고정시킨다.<br><br>손을 어깨 넓이로 벌려 바벨을 잡는다.<br><br>그 상태로 팔을 위로 들어 바벨을 뽑는다.<br><br>바벨을 명치까지 내린 후 올린다.<br><br>가능한 갯수만큼 수행한다.</p>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="flex-slide price">
+          <div class="flex-title">DEAD LIFT</div>
+          <div class="flex-about">
+            <div class="health-container">
+              <div class="health-card">
+                  <div class="health-face health-face1">
+                      <div class="health-content">
+                        <video width="100%" height="100%" controls class="flex-about-video">
+                        <!-- controls 속성을 사용하여 동영상 플레이어 컨트롤을 표시합니다. -->
+                        <source src="img/deadlift.mp4" type="video/mp4">
+                        <!-- 동영상 파일의 경로와 유형을 지정합니다. -->
+                        Your browser does not support the video tag.
+                        <!-- 브라우저가 video 요소를 지원하지 않을 때 표시할 메시지입니다. -->
+                        </video>
+                      </div>
+                  </div>
+                  <div class="health-face health-face2">
+                      <div class="health-content">
+                          <p>정강이와 바벨이 주먹 한 개 차이 나는 위치에 선다.<br><br>등을 후인하강한 후에 바벨을 어깨 넓이로 잡는다.<br><br>숨을 들이 쉬며 바벨을 몸에 붙이며 들어올린다.<br><br>견갑을 고정한 채 바벨을 내린다.<br><br>가능한 갯수만큼 수행한다.</p>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="flex-slide contact">
+          <div class="flex-title">SQUAT</div>
+              <div class="flex-about">
+                <div class="health-container">
+                  <div class="health-card">
+                      <div class="health-face health-face1">
+                          <div class="health-content">
+                            <video width="100%" height="100%" controls class="flex-about-video">
+                            <!-- controls 속성을 사용하여 동영상 플레이어 컨트롤을 표시합니다. -->
+                            <source src="img/squat.mp4" type="video/mp4">
+                            <!-- 동영상 파일의 경로와 유형을 지정합니다. -->
+                            Your browser does not support the video tag.
+                            <!-- 브라우저가 video 요소를 지원하지 않을 때 표시할 메시지입니다. -->
+                            </video>
+                          </div>
+                      </div>
+                      <div class="health-face health-face2">
+                          <div class="health-content">
+                              <p>견갑을 중간으로 모은채 승모 위에 바벨을 얹는다.<br><br>손을 어깨 넓이에서 주먹 한개 차이 나는 위치로 벌려 바벨을 잡는다.<br><br>그 상태로 숨을 들이쉬어 복압을 잡는다.<br><br>앉았다 일어선다.<br><br>가능한 갯수만큼 수행한다.</p>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+          </div>
+        </div>
+      </div>
+      
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.4.0/jquery.waitforimages.min.js'></script>
+      <script  src="health.js"></script>
+</div>
+
+
+<%-include('footer.ejs')%>

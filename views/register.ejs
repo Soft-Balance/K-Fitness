@@ -1,0 +1,33 @@
+<%-include('header.ejs')%>
+
+<!-- <form action="/registerProc" method="post" style="text-align: center;">
+    <ul style="display: inline-block; text-align: left;">
+        <li>회원가입</li>
+        <li>&nbsp;&nbsp;이름 : <input type="text" name="name" required></li>
+        <li>&nbsp;아이디 : <input type="text" name="user_id" required></li>
+        <li>비밀번호 : <input type="password" name="pw" required></li>
+
+        <button>회원가입</button>
+    </ul>
+</form> -->
+
+<h1 style="margin: 2%;">회원가입</h1>
+<link rel="stylesheet" href="login.css">
+
+    <form action="/registerProc" method="post" action="" class="login">
+
+        <label for="username">Name</label>
+        <input type="text" id="username" name="name" autocomplete="off" required />
+      
+        <label for="username">Id</label>
+        <input type="text" id="username" name="user_id" autocomplete="off" required />
+      
+        <label for="password">Password</label>
+        <input type="password" id="password" name="pw" autocomplete="off" required />
+      
+        <input type="submit" name="submit" value="Sign In" />
+      
+    </form>
+
+
+<%-include('footer.ejs')%>

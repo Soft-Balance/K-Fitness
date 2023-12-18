@@ -1,0 +1,80 @@
+<%-include('noticeboard-header.ejs')%>
+
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div style="text-align: center;">
+
+    <h1>고객센터</h1>
+
+    <div class="noticeboard-contactlist">
+        <div class="accordion">
+
+            <div class="accordion-content">
+                <header>
+                    <span class="title"> [자주 묻는 질문] 1. 운동기구는 몇 개 있나요?</span>
+                    <i class="fa-solid fa-plus"></i>
+                </header>
+
+                <p class="description">
+                    3개 있습니다. 
+                </p>
+            </div>
+
+            <div class="accordion-content">
+                <header>
+                    <span class="title"> [자주 묻는 질문] 2. 사이트에 왜 버그가 많나요?</span>
+                    <i class="fa-solid fa-plus"></i>
+                </header>
+
+                <p class="description">
+                    항상 최선을 다하는 K동 헬스장이 되겠습니다. 
+                </p>
+            </div>
+
+            <div class="accordion-content">
+                <header>
+                    <span class="title"> [자주 묻는 질문] 3. 치킨 먹어도 되요?   </span>
+                    <i class="fa-solid fa-plus"></i>
+                </header>
+
+                <p class="description">
+                    한 세트 더하시죠. 고객님.  
+                </p>
+            </div>
+
+            <!-- <div style="text-align: right; margin-right: 0vw;">
+                <button onclick="writing()">글 작성하기</button>
+            </div> -->
+
+            <% lists.forEach(function(item){ %>
+
+            <div class="accordion-content">
+
+                <header>
+                    <span class="title"> 문의 </span>
+                    <i class="fa-solid fa-plus"></i>
+                </header>
+
+                <p class="description">
+                    <a class="i">∙ <%=item.name%><br></a>
+                    <a class="i">∙ <%=item.phone%><br></a>
+                    <a class="i">∙ <%=item.email%><br><br></a>
+                    <%-item.memo.replaceAll("\n", "<br><br>")%>
+                    <br><a class="delete" href="/contactDelete?idx=<%=item.idx%>" onclick="return confirm('정말 삭제할까요?')">[삭제]</a>
+                </p>
+            </div>
+            
+            <% }) %>
+
+        </div>
+</div>
+</div>
+
+<script src="contact_noti.js"></script>
+<!-- <script>
+    function writing() {
+        window.location.href = "/contact"
+    }
+</script> -->
+<%-include('footer.ejs')%>
